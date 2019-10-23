@@ -1,34 +1,59 @@
 // This project is dedicated to the idea of facilitating the registration of parents 
 //of their children in a multiply number of kindergartens with one application. 
-Kindergarten = class {
-    constructor(name, adress){
+class Kindergarten { 
+    constructor(name, adress,email, webSite, maxFreeSpots){
         this.name = name
         this.adress = adress
+        this.email = email
+        this.webSite = webSite
+        this.maxFreeSpots = maxFreeSpots
+        this.children = []
+    this.waitingListKita1 = []}
+
+        addChild(child){
+            this.children.push(child);
+        } 
+        waitingList(child){
+            this.waitingListKita1.push(child)
+        }
     }
-    accept(parents){
-        console.log("Dear" + parents.name + "your child is added to the our waiting list!")
+
+        
+
+
+class Parents {
+     makeApplication(kindergarten) { 
+         this.kindergarten.push(kindergarten); 
     }
-    deny(parents){
-        console.log("Sorry " + parents.name + "your application is denied")
-    }
+    constructor(name, adress, phone, email, child) {
+        this.name = name
+        this.adress = adress
+        this.phone = phone
+        this.email = email
+        this.child = child  
+        this.kindergarten = []    
 }
-Parents = class {
-    constructor(name, adress, phone)
-{
+}
+
+class Child {
+    constructor(name , dateOfBirth ){
     this.name = name
-    this.adress = adress
-    this.phone = phone
-}
-    apply(kindergarten){
-        console.log("Application for chilnd1 age 4" + kindergarten.name + " from" + kindergarten.adress)
-        console.log("Best regards" + this.name)
-
-    }
+    this.dateOfBirth = dateOfBirth
 }
 
-kita1 = new Kindergarten("Kita1", "Spandau")
-parent1 = new Parents("Parents1 ", "Mitte ", "+49123456789")
-parent2 = new Parents("Parents2 ", "Wedding ", "+49987654321")
-parent1.apply(kita1)
-kita1.accept(parent1)
-kita1.deny(parent2)
+}
+
+
+//("-------START---------")
+
+
+kita1 = new Kindergarten("Kita1", "Spandau", "eee@gmail.com", "www.kita1.de", 2)
+parent1 = new Parents("Parents1 ", "Mitte ", "+49123456789", new Child("Bob", "11.01.2018" ))
+parent2 = new Parents("Parents2 ", "Wedding ", "+49987654321", new Child("Mike", "10.10.2018"))
+kita1.addChild(parent1.child)
+kita1.addChild(parent2.child)
+kita1.waitingList(parent1.child)
+kita1.waitingList(parent2.child)
+console.log("Amount of children in " + kita1.name + " = " + kita1.children.length)
+console.log("Parents in waiting list : " + kita1.waitingList.length)
+//("-------END---------")
