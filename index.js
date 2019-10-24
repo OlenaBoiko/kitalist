@@ -8,13 +8,16 @@ class Kindergarten {
         this.webSite = webSite
         this.maxFreeSpots = maxFreeSpots
         this.children = []
-    this.waitingListKita1 = []}
+    this.waitingList = []}
 
         addChild(child){
-            this.children.push(child);
-        } 
-        waitingList(child){
-            this.waitingListKita1.push(child)
+            if(this.children.length != this.maxFreeSpots){
+                this.children.push(child);
+            } else {
+                console.log("No places are availiable, you are added to waiting list");
+                this.waitingList.push(child);
+
+            }
         }
     }
 
@@ -50,10 +53,19 @@ class Child {
 kita1 = new Kindergarten("Kita1", "Spandau", "eee@gmail.com", "www.kita1.de", 2)
 parent1 = new Parents("Parents1 ", "Mitte ", "+49123456789", new Child("Bob", "11.01.2018" ))
 parent2 = new Parents("Parents2 ", "Wedding ", "+49987654321", new Child("Mike", "10.10.2018"))
+parent3 = new Parents("Boiko" , "Kladow" , "+49836546473" , new Child("Philipp", "11.12.2017"))
+parent4 = new Parents("Lot" , "Kreuzberg", "+490000000", new Child("Lisa", "01.01.2018"))
+parent5 = new Parents("Doder", "Mitte", "+498765456", new Child("Mark", "04.08.2017"))
+parent6 = new Parents("Frank", "Reikenindorf", "+49647387261", new Child("Olya", "30.12.2017"))
+parent7 = new Parents( "Schrank", "kreuzberg", "+4962763545", new Child("Pepe", "27.07.2018"))
 kita1.addChild(parent1.child)
 kita1.addChild(parent2.child)
-kita1.waitingList(parent1.child)
-kita1.waitingList(parent2.child)
+kita1.addChild(parent3.child)
+kita1.addChild(parent4.child)
+kita1.addChild(parent5.child)
+kita1.addChild(parent6.child)
+kita1.addChild(parent7.child)
+
 console.log("Amount of children in " + kita1.name + " = " + kita1.children.length)
 console.log("Parents in waiting list : " + kita1.waitingList.length)
 //("-------END---------")
